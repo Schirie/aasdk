@@ -116,7 +116,7 @@ private:
 
 template<typename ErrorArgumentType>
 
-class Promise<void, ErrorArgumentType>: {
+class Promise<void, ErrorArgumentType> {
 public:
     Promise(const Promise&) = delete;
     Promise& operator=(const Promise&) = delete;
@@ -199,7 +199,7 @@ private:
 };
 
 template<>
-class Promise<void, void>: {
+class Promise<void, void> {
 public:
     Promise(const Promise&) = delete;
     Promise& operator=(const Promise&) = delete;
@@ -281,7 +281,7 @@ private:
 };
 
 template<typename ResolveArgumentType>
-class Promise<ResolveArgumentType, void>: {
+class Promise<ResolveArgumentType, void> {
 public:
     Promise(const Promise&) = delete;
     Promise& operator=(const Promise&) = delete;
