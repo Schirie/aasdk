@@ -31,8 +31,11 @@ namespace io
 {
 
 template<typename ResolveArgumentType, typename ErrorArgumentType = error::Error>
-class Promise: boost::noncopyable {
+class Promise {
 public:
+    Promise(const Promise&) = delete;
+    Promise& operator=(const Promise&) = delete;
+
     typedef ResolveArgumentType ValueType;
     typedef ErrorArgumentType ErrorType;
     typedef std::function<void(ResolveArgumentType)> ResolveHandler;
@@ -112,8 +115,12 @@ private:
 };
 
 template<typename ErrorArgumentType>
-class Promise<void, ErrorArgumentType>: boost::noncopyable {
+
+class Promise<void, ErrorArgumentType>: {
 public:
+    Promise(const Promise&) = delete;
+    Promise& operator=(const Promise&) = delete;
+
     typedef ErrorArgumentType ErrorType;
     typedef std::function<void()> ResolveHandler;
     typedef std::function<void(ErrorArgumentType)> RejectHandler;
@@ -192,8 +199,11 @@ private:
 };
 
 template<>
-class Promise<void, void>: boost::noncopyable {
+class Promise<void, void>: {
 public:
+    Promise(const Promise&) = delete;
+    Promise& operator=(const Promise&) = delete;
+
     typedef std::function<void()> ResolveHandler;
     typedef std::function<void()> RejectHandler;
     typedef std::shared_ptr<Promise> Pointer;
@@ -271,8 +281,11 @@ private:
 };
 
 template<typename ResolveArgumentType>
-class Promise<ResolveArgumentType, void>: boost::noncopyable {
+class Promise<ResolveArgumentType, void>: {
 public:
+    Promise(const Promise&) = delete;
+    Promise& operator=(const Promise&) = delete;
+
     typedef ResolveArgumentType ValueType;
     typedef std::function<void(ResolveArgumentType)> ResolveHandler;
     typedef std::function<void(void)> RejectHandler;
